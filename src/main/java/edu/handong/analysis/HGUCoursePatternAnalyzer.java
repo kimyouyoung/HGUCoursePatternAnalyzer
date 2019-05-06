@@ -56,9 +56,16 @@ public class HGUCoursePatternAnalyzer {
 	private Student[] initiateStudentArrayFromLines(String[] lines) {
 		
 		// TODO: implement this method
+		students = new Student[numOfStudents];
+		int index = 0;
 		
+		for(int i = 0; i < lines.length; i++) {
+			Student stu = new Student(lines[i].split(", ")[1]);
+			if(!studentExist(students, stu))
+				students[index++] = stu;
+		}
 		
-		return null;
+		return students;
 	}
 
 	/**
@@ -70,7 +77,11 @@ public class HGUCoursePatternAnalyzer {
 	private boolean studentExist(Student[] students, Student student) {
 		
 		// TODO: implement this method
-
+		for(Student stu:students) {
+			if(stu == null) return false;
+			if(stu.getName().equals(student.getName()))
+				return true;
+		}
 		return false;
 	}
 	
@@ -82,8 +93,17 @@ public class HGUCoursePatternAnalyzer {
 	private Course[] initiateCourseArrayFromLines(String[] lines) {
 		
 		// TODO: implement this method
-		
-		return null;
+	      courses = new Course[numOfCourses];
+	      int index = 0;
+	      
+	      for(int i = 0; i < lines.length; i++) {
+	         Course cou = new Course(lines[i].split(", ")[2]);
+	         if (!courseExist(courses, cou))
+	            courses[index++] = cou;
+	      }
+	         
+	      return courses;
+
 	}
 
 	/**
@@ -95,7 +115,11 @@ public class HGUCoursePatternAnalyzer {
 	private boolean courseExist(Course[] courses, Course course) {
 		
 		// TODO: implement this method
-
+		for(Course cou:courses) {
+			if(cou == null) return false;
+			if(cou.getCourseName().equals(course.getCourseName()))
+				return true;
+		}
 		return false;
 	}
 
